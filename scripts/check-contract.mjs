@@ -8,7 +8,7 @@ import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { readdirSync } from 'node:fs'
 
-const root = dirname(fileURLToPath(import.meta.url))
+const root = dirname(dirname(fileURLToPath(import.meta.url)))
 const packagesDir = join(root, 'packages')
 let failed = 0
 

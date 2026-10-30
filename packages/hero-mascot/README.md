@@ -1,5 +1,7 @@
 # dsh-hero-mascot
 
+![效果](./assets/screenshot.jpg)
+
 新会话 Hero 区左侧的吉祥物，外加一个调节面板。
 
 - **图片可换**：默认用 `assets/hero.png`，也可以在设置里**上传自己的图**

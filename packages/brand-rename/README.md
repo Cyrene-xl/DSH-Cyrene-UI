@@ -1,5 +1,7 @@
 # dsh-brand-rename
 
+![效果](./assets/screenshot.jpg)
+
 DSH Web 界面的品牌与文案改造，六部分：
 
 ### A. 侧栏左上角品牌区

@@ -25,6 +25,7 @@
     }
   },
   "files": [
+    "assets",
     "index.js",
     "client.js",
     "cordis.patch.yml",

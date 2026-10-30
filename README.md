@@ -4,6 +4,8 @@
 [dsh-cyrene](https://github.com/Cyrene-xl/DSH-Cyrene) 人设插件配套使用，但**各自独立**：
 不装 dsh-cyrene 也能用，只是部分联动（称呼变量、表达风格入口）会自然失效。
 
+![DSH-Cyrene-UI 效果](./docs/screenshots/home.jpg)
+
 ## 包含的插件
 
 | 包 | 作用 |
