@@ -1,0 +1,5 @@
+# dsh-brand-rename bundle patch：只插入一行插件。
+# 主机半边是空 apply（全部工作都在浏览器半边）。
+- insert:
+    - id: dsh-brand-rename
+      name: 'dsh-brand-rename'

@@ -1,0 +1,4 @@
+# dsh-hero-mascot bundle patch：只插入一行插件。
+- insert:
+    - id: dsh-hero-mascot
+      name: 'dsh-hero-mascot'

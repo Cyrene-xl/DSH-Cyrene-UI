@@ -1,0 +1,12 @@
+{
+  "name": "dsh-cyrene-ui",
+  "private": true,
+  "version": "0.1.0",
+  "description": "DSH 界面美化插件集合（brand-rename / hero-mascot）",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "check": "node scripts/check-contract.mjs",
+    "test": "npm run check && (cd packages/brand-rename && node --test tests/*.mjs) && (cd packages/hero-mascot && node --test tests/*.mjs)"
+  }
+}

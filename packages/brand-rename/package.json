@@ -1,0 +1,60 @@
+{
+  "name": "dsh-brand-rename",
+  "version": "1.16.3",
+  "description": "界面品牌与文案改造：侧栏品牌字、新会话标题（多条/随机或顺序/中英文样式）、输入框提示、侧栏英文、底栏单位、权限预设名，以及设置里的称呼偏好。",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-settings-general"
+      ]
+    }
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "README.md",
+    "tests"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Cyrene-xl",
+    "url": "https://github.com/Cyrene-xl"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Cyrene-xl/DSH-Cyrene-UI.git",
+    "directory": "packages/brand-rename"
+  },
+  "homepage": "https://github.com/Cyrene-xl/DSH-Cyrene-UI/tree/main/packages/brand-rename",
+  "bugs": {
+    "url": "https://github.com/Cyrene-xl/DSH-Cyrene-UI/issues"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "theme",
+    "ui",
+    "brand",
+    "headline"
+  ],
+  "engines": {
+    "node": ">=22",
+    "dsh": ">=0.1.5 <0.3.0"
+  }
+}
