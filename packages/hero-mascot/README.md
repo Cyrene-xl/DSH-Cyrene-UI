@@ -86,3 +86,11 @@ dsh plugin --profile web remove dsh-hero-mascot
   以及 `--dsw-alias-*` 设计令牌；DSH 前端大版本升级若改了这些，需要同步更新。
 - 主机路由注册失败时吉祥物不显示，但设置行仍在（设置行不依赖路由）。
 - 手机上 `.fish` 的悬停游动动画不会触发（`(hover: hover)` 不成立），是静态的。
+
+## 兼容性与相关插件
+
+- 需要 DSH **0.1.5 ~ 0.2.1**、Node **22+**；
+- 图片与尺寸存浏览器 `localStorage`，按 origin（端口）隔离，换端口/换包名会丢；
+- 默认吉祥物图为非商用同人素材，角色版权归 HoYoverse / 米哈游，详见
+  [THIRD_PARTY_NOTICES](../../THIRD_PARTY_NOTICES.md)；可上传自己的图片替换；
+- 其它界面类插件见 [根 README 的「关联开源插件」](../../README.md#关联开源插件)。

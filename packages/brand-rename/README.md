@@ -436,3 +436,13 @@ dsh plugin --profile web remove dsh-brand-rename
 （`<DSH_HOME>/dsh-brand-rename.json` 的 `view` 字段），`localStorage` 只当缓存。
 DSH 换端口 / 换包名 / 升级都会换 origin，localStorage 会整体丢；宿主文件跟着
 `~/.dsh` 一起备份，不会再因为换版本把文案清空。
+
+## 兼容性与相关插件
+
+- 需要 DSH **0.1.5 ~ 0.2.1**、Node **22+**；0.2.1 起 CSS Modules 类名变化已适配；
+- 标题/文案等编辑器设置存浏览器 `localStorage`，按 origin（端口）隔离；称呼偏好与
+  宿主持久化设置存 `<DSH_HOME>/dsh-brand-rename.json`；
+- 与 [dsh-cyrene](https://github.com/Cyrene-xl/DSH-Cyrene) 联动：注册提示词变量
+  `{{user_nickname}}`；Hero 的风格按钮依赖它提供的 `/cyrene-style-api`，没有时自动隐藏；
+- 其它界面类插件（dream-skin / ui-boost / anime-theme）见
+  [根 README 的「关联开源插件」](../../README.md#关联开源插件)。
