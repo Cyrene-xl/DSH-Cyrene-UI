@@ -7,7 +7,7 @@
 - 设置 → 通用 → **「思考动画」** 开关，默认开；配置存 `<DSH_HOME>/dsh-cyrene-thinking.json`；
 - 动画由宿主路由 `/dsh-cyrene-thinking/thinking.gif` 提供，不内联进 JS。
 
-![效果](../../docs/screenshots/thinking.gif)
+![效果](./assets/thinking.gif)
 
 ## 安装
 

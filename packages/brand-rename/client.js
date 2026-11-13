@@ -53,7 +53,7 @@
  * 所以只会命中真正认识的那几种；像 composerBlock.reason 这类动态原因不会被误改。
  */
 window.__ModuleLoader__.load({
-  id: 'dsha-brand-rename',
+  id: 'dsh-brand-rename',
   factory: (require) => {
     var module = { exports: {} };
     var exports = module.exports;
@@ -453,9 +453,11 @@ window.__ModuleLoader__.load({
     var VIEW_API = '/dsh-brand-rename-api';
     var hostSynced = false;
     var hostPushTimer = null;
-    /* 只有真实浏览器页面才有 location；单测的 DOM 桩没有，宿主同步整体跳过。 */
-    var hostEnabled = typeof window !== 'undefined' && window.location
-      && typeof window.location.href === 'string' && /^https?:/.test(window.location.href);
+    /*
+     * 只要有 fetch 就尝试发请求 —— 不要用 location.href 的协议当闸门：
+     * 桌面端/自定义协议下 href 可能不是 http(s)，会把所有接口调用静默拦掉。
+     */
+    var hostEnabled = typeof window !== 'undefined' && typeof window.location !== 'undefined' && typeof fetch === 'function';
 
     function subscribe(fn) {
       listeners.add(fn);
@@ -1891,6 +1893,31 @@ window.__ModuleLoader__.load({
 
     var styleInfo = { loaded: false, failed: false, session: '', style: '', styles: [] };
     var styleMenu = null;
+    var styleMenuAnchor = null;
+    /* 与宿主 style.js 的 STYLES 一致：接口没回来时菜单也能展开。 */
+    var FALLBACK_STYLES = [
+      { id: 'default', label: '温柔・和善（默认）', temperature: null },
+      { id: 'lively', label: '元气・活泼', temperature: 0.9 },
+      { id: 'healing', label: '治愈・安心', temperature: 0.55 },
+      { id: 'focused', label: '知性・认真', temperature: 0.4 },
+      { id: 'sweet', label: '撒娇・黏人', temperature: 0.82 },
+      { id: 'custom', label: '自定义', temperature: null }
+    ];
+
+    /** 同源就拼绝对地址；拿不到 origin 时退回相对地址。 */
+    function styleApiBase() {
+      try {
+        if (typeof location !== 'undefined' && location.origin && /^https?:/.test(location.origin)) {
+          return location.origin + STYLE_API;
+        }
+      } catch (err) { /* 继续用相对地址 */ }
+      return STYLE_API;
+    }
+
+    /** 接口挂了也用内置档位，避免「点开是空菜单」。 */
+    function styleStyles() {
+      return styleInfo.styles.length > 0 ? styleInfo.styles : FALLBACK_STYLES;
+    }
 
     /** 当前会话 id（没有会话就空串）。 */
     function styleSessionId() {
@@ -1900,7 +1927,7 @@ window.__ModuleLoader__.load({
 
     /** 档位 id → 人读的名字。 */
     function styleLabelOf(id) {
-      for (var i = 0; i < styleInfo.styles.length; i++) {
+      for (var i = 0; i < list.length; i++) {
         if (styleInfo.styles[i].id === id) return styleInfo.styles[i].label;
       }
       return '默认';
@@ -1911,27 +1938,51 @@ window.__ModuleLoader__.load({
       if (!hostEnabled) return;
       if (!force && styleInfo.loaded) return;
       var session = styleSessionId();
-      var url = STYLE_API + (session === '' ? '' : '?session=' + encodeURIComponent(session));
+      var url = styleApiBase() + (session === '' ? '' : '?session=' + encodeURIComponent(session));
+      var settled = false;
+      var timer = setTimeout(function () {
+        if (settled) return;
+        settled = true;
+        styleInfo.failed = true;
+        patchStyleChip();
+        if (styleMenu && styleMenuAnchor) reopenStyleMenu();
+      }, 4000);
       fetch(url, { headers: { accept: 'application/json' } })
         .then(function (res) { return res.json(); })
         .then(function (data) {
           if (!data || data.ok !== true) throw new Error((data && data.error) || 'bad payload');
+          settled = true;
+          clearTimeout(timer);
           styleInfo.loaded = true;
           styleInfo.failed = false;
           styleInfo.session = data.session || '';
           styleInfo.style = data.style || 'default';
           styleInfo.styles = Array.isArray(data.styles) ? data.styles : [];
           patchStyleChip();
+          if (styleMenu && styleMenuAnchor) reopenStyleMenu();
         })
-        .catch(function () {
+        .catch(function (err) {
+          if (settled) return;
+          settled = true;
+          clearTimeout(timer);
           styleInfo.failed = true;
+          try { console.warn('[brand-rename] 表达风格接口读取失败：', err && err.message); } catch (e) {}
           patchStyleChip();
+          if (styleMenu && styleMenuAnchor) reopenStyleMenu();
         });
+    }
+
+    /** 数据晚到时重画菜单，别让高亮停在旧档位。 */
+    function reopenStyleMenu() {
+      if (!styleMenu || !styleMenuAnchor) return;
+      var anchor = styleMenuAnchor;
+      openStyleMenu(anchor);
     }
 
     function closeStyleMenu() {
       if (styleMenu && styleMenu.parentElement) styleMenu.parentElement.removeChild(styleMenu);
       styleMenu = null;
+      styleMenuAnchor = null;
       var chip = document.querySelector('.' + STYLE_CHIP_CLASS);
       if (chip) chip.setAttribute('aria-expanded', 'false');
     }
@@ -1953,7 +2004,7 @@ window.__ModuleLoader__.load({
       var body = (session === '' || blank)
         ? { defaultStyle: id }
         : { session: session, style: id };
-      fetch(STYLE_API, {
+      fetch(styleApiBase(), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', accept: 'application/json' },
         body: JSON.stringify(body)
@@ -1975,6 +2026,8 @@ window.__ModuleLoader__.load({
 
     function openStyleMenu(anchor) {
       closeStyleMenu();
+      styleMenuAnchor = anchor;
+      var list = styleStyles();
       var rect = anchor.getBoundingClientRect();
       var menu = document.createElement('div');
       menu.className = STYLE_MENU_CLASS;
@@ -2003,7 +2056,7 @@ window.__ModuleLoader__.load({
             chooseStyle(item.id);
           });
           menu.appendChild(button);
-        })(styleInfo.styles[i]);
+        })(list[i]);
       }
       document.body.appendChild(menu);
       styleMenu = menu;
@@ -2019,16 +2072,20 @@ window.__ModuleLoader__.load({
       chip.addEventListener('click', function (event) {
         event.stopPropagation();
         if (styleMenu) { closeStyleMenu(); return; }
-        if (!styleInfo.loaded) { loadStyleInfo(false); return; }
+        /* 先展开（用内置档位），再后台刷新；接口慢/挂了也不会是点不动的按钮。 */
         openStyleMenu(chip);
+        loadStyleInfo(true);
       });
       return chip;
     }
 
     function renderStyleChip(chip) {
-      var label = styleInfo.loaded ? '风格 · ' + styleLabelOf(styleInfo.style) : '风格…';
+      var label;
+      if (styleInfo.loaded) label = '风格 · ' + styleLabelOf(styleInfo.style);
+      else if (styleInfo.failed) label = '风格 · 接口未连接';
+      else label = '风格…';
       if (chip.textContent !== label) chip.textContent = label;
-      chip.title = '表达风格（按会话）：点开选择';
+      chip.title = styleInfo.failed ? '表达风格接口暂时不可用，点开仍可尝试选择' : '表达风格（按会话）：点开选择';
     }
 
     /** 每次 DOM 变动后对齐一次：位置不对就搬回去，没有 Hero 就摘掉。 */
@@ -3184,6 +3241,21 @@ window.__ModuleLoader__.load({
           if (typeof stop === 'function') stop();
         };
       });
+
+      /* 从设置页切回来 / 窗口重新聚焦时刷新风格 chip（A5：别处改档后文字不更新）。 */
+      ctx.effect(function () {
+        function onWake() {
+          if (typeof document !== 'undefined' && document.visibilityState === 'hidden') return;
+          if (styleInfo.loaded) loadStyleInfo(true);
+        }
+        if (typeof window === 'undefined' || typeof window.addEventListener !== 'function') return;
+        window.addEventListener('focus', onWake);
+        document.addEventListener('visibilitychange', onWake);
+        return function () {
+          window.removeEventListener('focus', onWake);
+          document.removeEventListener('visibilitychange', onWake);
+        };
+      }, 'dsh-brand-rename: style chip refresh');
 
       ctx.effect(function () {
         watchDom();

@@ -1,6 +1,6 @@
 {
   "name": "dsh-brand-rename",
-  "version": "1.16.3",
+  "version": "1.16.4",
   "description": "界面品牌与文案改造：侧栏品牌字、新会话标题（多条/随机或顺序/中英文样式）、输入框提示、侧栏英文、底栏单位、权限预设名，以及设置里的称呼偏好。",
   "type": "module",
   "main": "index.js",
@@ -57,5 +57,8 @@
   "engines": {
     "node": ">=22",
     "dsh": ">=0.1.5 <0.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

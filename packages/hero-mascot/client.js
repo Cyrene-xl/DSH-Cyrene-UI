@@ -19,7 +19,7 @@
  * 超过配额上限就继续降。抠白底开关在**选择图片时**生效；要改就重新选一次。
  */
 window.__ModuleLoader__.load({
-  id: 'dsha-hero-mascot',
+  id: 'dsh-hero-mascot',
   factory: (require) => {
     var module = { exports: {} };
     var exports = module.exports;

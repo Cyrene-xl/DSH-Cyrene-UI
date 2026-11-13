@@ -1,6 +1,6 @@
 {
   "name": "dsh-hero-mascot",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "新会话 Hero 区左侧吉祥物：图片可上传自定义（可选抠白底）、大小与位置可在「设置 → 通用」调节，并可锁定防误触。",
   "type": "module",
   "main": "index.js",
@@ -55,5 +55,8 @@
   "engines": {
     "node": ">=22",
     "dsh": ">=0.1.5 <0.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
