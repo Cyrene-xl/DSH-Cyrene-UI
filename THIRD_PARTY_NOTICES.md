@@ -20,3 +20,10 @@
 - 截图由项目作者在本机拍摄，用于展示插件效果；
 - 截图中的吉祥物是上一条所述的同人素材，角色版权归 HoYoverse / 米哈游，
   同样**禁止商用**；截图整体随仓库以 MIT 分发，但不构成对角色美术的授权。
+
+## 思考循环动画（`packages/thinking-animation/assets/thinking.gif`）
+
+- 素材来自 [Cyrene-Agent](https://github.com/Playa-Cyrene/Cyrene-Agent) 的
+  `assets/ui/cyrene-thinking-loop/`（MIT 仓库）；
+- 角色「昔涟」版权归 HoYoverse / 米哈游，属非官方、非商业同人素材；
+- 同样**禁止商用**；代码 MIT 不覆盖该 GIF 的角色美术。

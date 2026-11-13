@@ -1,0 +1,4 @@
+# dsh-cyrene-thinking bundle patch：只插入一行插件。
+- insert:
+    - id: dsh-cyrene-thinking
+      name: 'dsh-cyrene-thinking'

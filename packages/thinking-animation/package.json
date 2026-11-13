@@ -1,0 +1,58 @@
+{
+  "name": "dsh-cyrene-thinking",
+  "version": "0.1.0",
+  "description": "把 DSH 聊天里「思考中」的小图标换成昔涟的思考循环动画（可开关）",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "assets",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-settings-general"
+      ]
+    }
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Cyrene-xl",
+    "url": "https://github.com/Cyrene-xl"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Cyrene-xl/DSH-Cyrene-UI.git",
+    "directory": "packages/thinking-animation"
+  },
+  "homepage": "https://github.com/Cyrene-xl/DSH-Cyrene-UI/tree/main/packages/thinking-animation",
+  "bugs": {
+    "url": "https://github.com/Cyrene-xl/DSH-Cyrene-UI/issues"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "ui",
+    "thinking",
+    "animation"
+  ],
+  "engines": {
+    "node": ">=22",
+    "dsh": ">=0.1.5 <0.3.0"
+  }
+}

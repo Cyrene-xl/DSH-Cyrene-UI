@@ -29,6 +29,12 @@
 - 大小 / 水平 / 垂直可调，并带「锁定位置与大小」；
 - 图片与尺寸存浏览器 `localStorage`；换端口 / 换包名会丢（换机前记得重传）。
 
+**thinking-animation**
+
+- 模型运行时，底部「正在分析请求」旁的鲸鱼尾换成昔涟思考循环动画；
+- 过程标题里运行中的思考行同样替换；变成「已完成分析」后自动还原；
+- 设置 → 通用 →「思考动画」开关，默认开。
+
 ## 包含的插件
 
 | 包 | 版本 | 作用 |
@@ -46,6 +52,7 @@ cd DSH-Cyrene-UI
 
 dsh plugin --profile web add link:$PWD/packages/brand-rename
 dsh plugin --profile web add link:$PWD/packages/hero-mascot
+dsh plugin --profile web add link:$PWD/packages/thinking-animation
 ```
 
 装完重启 DSH（或重开 App），设置 → 通用里会出现对应设置行。两个包可单独装、单独卸：
@@ -53,6 +60,7 @@ dsh plugin --profile web add link:$PWD/packages/hero-mascot
 ```bash
 dsh plugin --profile web remove dsh-brand-rename
 dsh plugin --profile web remove dsh-hero-mascot
+dsh plugin --profile web remove dsh-cyrene-thinking
 ```
 
 ## 兼容性与已知限制

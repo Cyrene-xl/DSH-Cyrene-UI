@@ -7,6 +7,6 @@
   "license": "MIT",
   "scripts": {
     "check": "node scripts/check-contract.mjs",
-    "test": "npm run check && (cd packages/brand-rename && node --test tests/*.mjs) && (cd packages/hero-mascot && node --test tests/*.mjs)"
+    "test": "npm run check && (cd packages/brand-rename && node --test tests/*.mjs) && (cd packages/hero-mascot && node --test tests/*.mjs) && (cd packages/thinking-animation && node --test tests/*.mjs)"
   }
 }
