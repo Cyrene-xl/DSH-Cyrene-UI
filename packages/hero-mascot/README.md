@@ -72,7 +72,12 @@ desc   { color: var(--dsw-alias-label-tertiary); font-size: 12px; line-height: 1
 ## 安装 / 卸载
 
 ```sh
-python3 /root/.dsh/plugin-manager.py import <本目录的 zip>
+# 从 npm（推荐）
+dsh plugin --profile web add dsh-hero-mascot
+
+# 或从仓库 link
+git clone https://github.com/Cyrene-xl/DSH-Cyrene-UI.git
+dsh plugin --profile web add link:$PWD/DSH-Cyrene-UI/packages/hero-mascot
 
 # 卸载
 dsh plugin --profile web remove dsh-hero-mascot

@@ -410,11 +410,12 @@ Hero（新会话页）标题正下方那个两档滑块，把这一档选择直�
 ## 安装 / 卸载
 
 ```sh
-git clone https://github.com/Cyrene-xl/DSH-Cyrene-UI.git
-cd DSH-Cyrene-UI
+# 从 npm（推荐）
+dsh plugin --profile web add dsh-brand-rename
 
-# 从仓库目录安装（link）
-dsh plugin --profile web add link:$PWD/packages/brand-rename
+# 或从仓库 link
+git clone https://github.com/Cyrene-xl/DSH-Cyrene-UI.git
+dsh plugin --profile web add link:$PWD/DSH-Cyrene-UI/packages/brand-rename
 
 # 卸载
 dsh plugin --profile web remove dsh-brand-rename

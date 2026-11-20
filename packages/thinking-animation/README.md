@@ -12,7 +12,11 @@
 ## 安装
 
 ```bash
-dsh plugin --profile web add link:$PWD/packages/thinking-animation
+# 从 npm（推荐）
+dsh plugin --profile web add dsh-cyrene-thinking
+
+# 或从仓库 link
+dsh plugin --profile web add link:$PWD/DSH-Cyrene-UI/packages/thinking-animation
 ```
 
 重启 DSH 生效。

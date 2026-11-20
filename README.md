@@ -46,6 +46,16 @@
 
 需要 **DSH 0.1.5 ~ 0.2.1**（0.2.1-rc.2 实测）、**Node 22+**。
 
+已发布到 npm，直接装（推荐）：
+
+```bash
+dsh plugin --profile web add dsh-brand-rename
+dsh plugin --profile web add dsh-hero-mascot
+dsh plugin --profile web add dsh-cyrene-thinking
+```
+
+或者从仓库本地 link：
+
 ```bash
 git clone https://github.com/Cyrene-xl/DSH-Cyrene-UI.git
 cd DSH-Cyrene-UI
