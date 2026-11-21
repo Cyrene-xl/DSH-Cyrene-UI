@@ -39,14 +39,22 @@
 
 | 包 | 版本 | 作用 |
 |---|---|---|
-| [`packages/brand-rename`](./packages/brand-rename) | 1.16.3 | 品牌字 / 标题 / 输入框提示 / 侧栏英文 / 底栏单位 / 权限名 / 称呼 |
-| [`packages/hero-mascot`](./packages/hero-mascot) | 2.2.0 | 新会话吉祥物：上传、抠白底、大小位置、锁定 |
+| [`packages/brand-rename`](./packages/brand-rename) | 1.16.4 | 品牌字 / 标题 / 输入框提示 / 侧栏英文 / 底栏单位 / 权限名 / 称呼 |
+| [`packages/hero-mascot`](./packages/hero-mascot) | 2.2.1 | 新会话吉祥物：上传、抠白底、大小位置、锁定 |
+| [`packages/thinking-animation`](./packages/thinking-animation) | 0.1.0 | 「正在分析请求」旁的思考循环动画 |
+| [`packages/ui-bundle`](./packages/ui-bundle) | 0.1.0 | **聚合包** `dsh-cyrene-ui`：一次安装上面三个（也可分别单装） |
 
 ## 安装
 
-需要 **DSH 0.1.5 ~ 0.2.1**（0.2.1-rc.2 实测）、**Node 22+**。
+需要 **DSH 0.1.5 ~ 0.2.2**（0.2.2-rc.1 实测）、**Node 22+**。
 
-已发布到 npm，直接装（推荐）：
+已发布到 npm。想一次装齐三个（推荐）：
+
+```bash
+dsh plugin --profile web add dsh-cyrene-ui
+```
+
+或只装其中一个：
 
 ```bash
 dsh plugin --profile web add dsh-brand-rename

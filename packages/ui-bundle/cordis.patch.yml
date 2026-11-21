@@ -1,0 +1,10 @@
+# dsh-cyrene-ui 聚合包：一次插入三个界面插件。
+# 注意：不要再同时安装 dsh-brand-rename / dsh-hero-mascot / dsh-cyrene-thinking，
+# 否则同一个 id 会被插入两次，加载器会报重复。
+- insert:
+    - id: dsh-brand-rename
+      name: 'dsh-brand-rename'
+    - id: dsh-hero-mascot
+      name: 'dsh-hero-mascot'
+    - id: dsh-cyrene-thinking
+      name: 'dsh-cyrene-thinking'

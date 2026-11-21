@@ -1,5 +1,14 @@
 # 更新记录
 
+## 2026-11-21 — 聚合包
+
+### dsh-cyrene-ui 0.1.0
+
+- 新增聚合包：依赖 `dsh-brand-rename@^1.16.4`、`dsh-hero-mascot@^2.2.1`、
+  `dsh-cyrene-thinking@^0.1.0`，通过 bundle patch 一次插入三个插件行；
+- 安装：`dsh plugin --profile web add dsh-cyrene-ui`；
+- 与单包**互斥**：同时装会让同一个 id 插入两次，加载器报重复。
+
 ## 2026-11-14 — 补丁版本
 
 ### dsh-brand-rename 1.16.4

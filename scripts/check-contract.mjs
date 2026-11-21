@@ -27,7 +27,10 @@ for (const name of readdirSync(packagesDir)) {
   for (const bad of ['preinstall', 'install', 'postinstall', 'prepare']) {
     if (pkg.scripts?.[bad]) errors.push(`含生命周期脚本 ${bad}`)
   }
-  if (pkg.dependencies && Object.keys(pkg.dependencies).length > 0) errors.push('含运行时依赖')
+  /* 聚合包必须依赖三个单包；其余插件保持零运行时依赖。 */
+  if ((pkg.dependencies && Object.keys(pkg.dependencies).length > 0) && pkg.name !== 'dsh-cyrene-ui') {
+    errors.push('含运行时依赖')
+  }
   for (const [key, target] of Object.entries(pkg.exports ?? {})) {
     if (!target.startsWith('./')) { errors.push(`exports ${key} 不是相对路径`); continue }
     if (!existsSync(resolve(dir, target))) errors.push(`exports ${key} 指向不存在的文件：${target}`)

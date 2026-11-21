@@ -1,0 +1,56 @@
+{
+  "name": "dsh-cyrene-ui",
+  "version": "0.1.0",
+  "description": "DSH-Cyrene 界面美化全家桶：一次安装 dsh-brand-rename + dsh-hero-mascot + dsh-cyrene-thinking。",
+  "license": "MIT",
+  "author": {
+    "name": "Cyrene-xl",
+    "url": "https://github.com/Cyrene-xl"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cyrene-xl/DSH-Cyrene-UI.git",
+    "directory": "packages/ui-bundle"
+  },
+  "homepage": "https://github.com/Cyrene-xl/DSH-Cyrene-UI/tree/main/packages/ui-bundle",
+  "bugs": {
+    "url": "https://github.com/Cyrene-xl/DSH-Cyrene-UI/issues"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "theme",
+    "ui",
+    "bundle"
+  ],
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "dsh-brand-rename": "^1.16.4",
+    "dsh-hero-mascot": "^2.2.1",
+    "dsh-cyrene-thinking": "^0.1.0"
+  },
+  "engines": {
+    "node": ">=22",
+    "dsh": ">=0.1.5 <0.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}
